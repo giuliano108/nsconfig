@@ -1,0 +1,3 @@
+production:
+  <<: *DEFAULTS
+  key1: 'overridden value 1 in production'
