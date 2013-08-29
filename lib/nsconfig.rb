@@ -44,6 +44,7 @@ module NSConfig
             raise 'Cannot load config, maybe wrong environment?'
         end
         @config = symbolize_keys(YAML.load(raw_config)[env] || {})
+        raise 'Config is empty, maybe wrong environment?' unless @config and !@config.empty?
         self[:environment] = env
     end
 
