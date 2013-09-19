@@ -43,6 +43,7 @@ module NSConfig
         rescue
             raise 'Cannot load config, maybe wrong environment?'
         end
+        raise "Config is empty, possibly because there are no YAML files in \"#{@config_path}\". Did you call YourModule.config_path to specify where they are kept?" if raw_config.empty?
         @config = symbolize_keys(YAML.load(raw_config)[env] || {})
         raise 'Config is empty, maybe wrong environment?' unless @config and !@config.empty?
         self[:environment] = env
